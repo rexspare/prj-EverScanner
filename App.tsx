@@ -20,7 +20,7 @@ const App = () => {
       <StatusBar
         backgroundColor={'transparent'}
         translucent
-        barStyle={'dark-content'} />
+        barStyle={'light-content'} />
       <RootStack />
       <Toast />
     </>
