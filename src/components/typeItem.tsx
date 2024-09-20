@@ -30,7 +30,7 @@ export default TypeItem
 const styles = StyleSheet.create({
     main: {
         borderWidth: 1.5,
-        borderColor: COLORS.PRIMARY,
+        borderColor: COLORS.INACTIVE,
         width: wp(20),
         maxWidth: 100,
         marginHorizontal: wp(2),
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     textContainer: {
         paddingHorizontal: 5,
         paddingVertical: 2,
-        backgroundColor: COLORS.PRIMARY,
+        backgroundColor: COLORS.INACTIVE,
         borderRadius: 2,
         position: 'absolute',
         bottom: - ((FONT_SIZE._10 / 2) + 3)
