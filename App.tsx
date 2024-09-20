@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import BootSplash from "react-native-bootsplash";
+import RootStack from './src/navigation/rootStack';
+import Toast from 'react-native-toast-message';
 const App = () => {
   useEffect(() => {
 
@@ -10,14 +12,18 @@ const App = () => {
 
     init().finally(async () => {
       await BootSplash.hide({ fade: true });
-      console.log("BootSplash has been hidden successfully");
     });
   }, []);
 
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <>
+      <StatusBar
+        backgroundColor={'transparent'}
+        translucent
+        barStyle={'dark-content'} />
+      <RootStack />
+      <Toast />
+    </>
   )
 }
 

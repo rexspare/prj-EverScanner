@@ -1,7 +1,1 @@
-const COLORS = {
-    PRIMARY: "#34C0EB",
-    SECONDARY: "#333333",
-    WHITE: "#FFFFFF",
-    INACTIVE: "#D9D9D9",
-    GREY: "#E2E2E2"
-}
+export * from './enums'
