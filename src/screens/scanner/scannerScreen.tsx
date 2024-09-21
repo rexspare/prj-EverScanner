@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, Vibration } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import ImagePicker from 'react-native-image-crop-picker';
 import { COLORS, hp } from '../../assets/stylesGuide';
@@ -58,6 +58,7 @@ const ScannerScreen = () => {
 
   const handleScan = (val: any) => {
     console.log("val == >>", val?.data);
+    Vibration.vibrate()
   }
 
   const handleNotDetected = () => {

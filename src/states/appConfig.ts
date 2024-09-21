@@ -10,11 +10,15 @@ export interface IAppConfig {
     // State values
     language: any;
     setLanguage: (val: any) => void;
+    vibrateEnabled: boolean;
+    setVibrateEnabled: (val: boolean) => void;
 }
 
 const initialState: IAppConfig = {
     language: English,
     setLanguage: () => { },
+    vibrateEnabled: true,
+    setVibrateEnabled: () => { },
 };
 
 /**
@@ -23,6 +27,7 @@ const initialState: IAppConfig = {
 export const useAppConfigState = create<IAppConfig>((set, get) => ({
     ...initialState,
     setLanguage: val => set({ language: val }),
+    setVibrateEnabled: val => set({ vibrateEnabled: val }),
 }));
 
 /**

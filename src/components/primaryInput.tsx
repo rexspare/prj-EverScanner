@@ -2,8 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import { StyleSheet, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import { BodyText } from '.';
-import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp } from '../assets/stylesGuide';
-import { passowrdStrength_ } from '../utils/myUtils';
+import { COLORS, COMMON_STYLES, FONTS, FONT_SIZE, hp, wp } from '../assets/stylesGuide';
 import If from './if';
 
 interface primaryInputPros {
@@ -77,7 +76,7 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
                     style={[
                         styles.input,
                         props.inputStyles,
-                        multiline == true ? { textAlignVertical: 'top' } : {}
+                        multiline == true ? { textAlignVertical: 'top', height: hp(10) } : {}
                     ]}
                     value={value || ""}
                     secureTextEntry={props?.renderRightIcon ? false : props?.iconName ? false : isPassword == true ? isSecureTextEntry : false}
@@ -86,7 +85,7 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
                     keyboardType={keyBoardType}
                     editable={editable}
                     placeholder={placeholder || ""}
-                    placeholderTextColor={COLORS.DISABLED}
+                    placeholderTextColor={COLORS.INACTIVE}
                     multiline={multiline == true ? true : false}
                     onFocus={() => setisFocused(true)}
                     onBlur={() => setisFocused(false)}
@@ -103,7 +102,7 @@ const PrimaryInput: React.FC<primaryInputPros> = (props) => {
                                 props?.renderRightIcon :
                                 <Feather
                                     name={props?.iconName ? props?.iconName : isSecureTextEntry ? 'eye' : 'eye-off'}
-                                    color={COLORS.BLACK}
+                                    color={COLORS.INACTIVE}
                                     size={17} />
 
                         }
@@ -120,7 +119,7 @@ export default React.memo(PrimaryInput)
 
 const styles = StyleSheet.create({
     main: {
-        width: '100%',
+        width: wp(88),
         alignSelf: 'center',
         marginVertical: hp(1),
         backgroundColor: COLORS.BACKGROUND,
@@ -135,9 +134,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: hp(0.9),
         alignItems: 'center',
-        backgroundColor: COLORS.WHITE,
+        backgroundColor: COLORS.BACKGROUND,
         borderWidth: 1,
-        borderColor: "rgba(232, 236, 244, 1)"
+        borderColor: COLORS.GREY_40
     },
     input: {
         flex: 1,
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         fontSize: FONT_SIZE._14,
         fontFamily: FONTS.REGULAR,
-        color: COLORS.BLACK
+        color: COLORS.WHITE
     },
     eyeBtn: {
         ...COMMON_STYLES.center_,
@@ -154,13 +153,5 @@ const styles = StyleSheet.create({
     titleContainer: {
         ...COMMON_STYLES.flexRowSpaceBetween
     },
-    strengthContainer: {
-        flexDirection: 'row',
-    },
-    strength: {
-        width: 25,
-        height: 4,
-        marginLeft: 4,
-        borderRadius: 10,
-    }
+
 })

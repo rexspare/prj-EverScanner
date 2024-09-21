@@ -1,13 +1,16 @@
 import React from 'react'
 import { View } from 'react-native'
-import { GenerateHeader, Layout, TypeItem } from '../../components'
+import { GenerateHeader, GenerateModal, Layout, TypeItem } from '../../components'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import styles from './styles.generate'
 import { Business, Contact, Email, Event, Instagram, Location, Telephone, Text, Twitter, Website, WhatsApp, Wifi } from '../../assets/svg'
 import { hp } from '../../assets/stylesGuide'
+import { useNavigation } from '@react-navigation/native'
+import { SCREENS } from '../../assets/constants'
 
 const GenerateScreen = () => {
   const lang = useAppConfigState(appConfigtStateSelectors.language)
+  const navigation = useNavigation()
 
   const TYPES = [
     {
@@ -84,11 +87,12 @@ const GenerateScreen = () => {
               key={index}
               item={item}
               index={index}
-              onPress={() => { }}
+              onPress={() => navigation.navigate(SCREENS.GENERATE_CODE, { type: item?.text })}
             />
           ))
         }
       </View>
+
 
     </Layout>
   )

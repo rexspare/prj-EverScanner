@@ -7,8 +7,10 @@ import PrimaryInput from "./primaryInput";
 import Label from "./label";
 import BodyText from "./bodyText";
 import TypeItem from "./typeItem";
+import SettingItem from "./settingItem";
 
 export * from './headers'
+export * from './generations'
 
 
 export {
@@ -20,5 +22,6 @@ export {
     PrimaryInput,
     Label,
     BodyText,
-    TypeItem
+    TypeItem,
+    SettingItem
 }

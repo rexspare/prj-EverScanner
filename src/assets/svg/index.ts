@@ -5,6 +5,7 @@ import Flash from './flash.svg'
 import CameraRotate from './camera.svg'
 
 export * from './types'
+export * from './setting'
 
 export {
     QRScan,

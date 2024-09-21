@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { FC } from 'react'
 import { COLORS, FONT_SIZE, FONTS, hp, wp } from '../assets/stylesGuide';
 import BodyText from './bodyText';
 
@@ -9,7 +9,7 @@ interface ITypeItem {
     onPress: Function;
 }
 
-const TypeItem = (props: ITypeItem) => {
+const TypeItem: FC<ITypeItem> = (props: ITypeItem) => {
     const { item, index, onPress = () => { } } = props
     return (
         <TouchableOpacity

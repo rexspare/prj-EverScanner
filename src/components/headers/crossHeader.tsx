@@ -5,39 +5,39 @@ import { hasNotch, isIOS } from '../../utils/myUtils'
 import Label from '../label'
 import FontAwesome from 'react-native-vector-icons/FontAwesome6'
 import { useNavigation } from '@react-navigation/native'
-import { SCREENS } from '../../assets/constants'
 
-interface IGenerateHeader {
+interface ICrossHeader {
     title?: string;
-
+    onPress: Function;
 }
 
-const GenerateHeader = (props: IGenerateHeader) => {
-    const { title } = props
-    const navigation = useNavigation()
+const CrossHeader = (props: ICrossHeader) => {
+    const { title, onPress = () => { } } = props
+    const navigetion = useNavigation()
 
     return (
         <View style={styles.main}>
-            <Label style={styles.title}>{title}</Label>
 
             <TouchableOpacity
                 activeOpacity={0.8}
                 style={styles.btn}
                 hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
-                onPress={() => navigation.navigate(SCREENS.SETTING)}
+                onPress={() => onPress()}
             >
-                <FontAwesome name={"bars-staggered"} color={COLORS.INACTIVE} size={15} />
+                <FontAwesome name={"xmark"} color={COLORS.INACTIVE} size={15} />
             </TouchableOpacity>
+
+            <Label style={styles.title}>{title}</Label>
+
         </View>
     )
 }
 
-export default GenerateHeader
+export default CrossHeader
 
 const styles = StyleSheet.create({
     main: {
         width: wp(100),
-        marginTop: (isIOS() && hasNotch()) ? 60 : StatusBar.currentHeight,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
