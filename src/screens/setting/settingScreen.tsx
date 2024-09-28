@@ -8,9 +8,12 @@ import styles from './styles.setting'
 import { Switch } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SCREENS } from '../../assets/constants'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { InitialNavigationStackParamList } from '../../navigation/rootStack'
+
 
 const SettingScreen = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation<NativeStackNavigationProp<InitialNavigationStackParamList>>();
     const lang = useAppConfigState(appConfigtStateSelectors.language)
     const vibrateEnabled = useAppConfigState(appConfigtStateSelectors.vibrateEnabled)
     const setVibrateEnabled = useAppConfigState(appConfigtStateSelectors.setVibrateEnabled)

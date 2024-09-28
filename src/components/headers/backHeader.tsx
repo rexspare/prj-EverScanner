@@ -1,6 +1,6 @@
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { COLORS, COMMON_STYLES, FONT_SIZE, wp } from '../../assets/stylesGuide'
+import { COLORS, COMMON_STYLES, FONT_SIZE, hp, wp } from '../../assets/stylesGuide'
 import { hasNotch, isIOS } from '../../utils/myUtils'
 import Label from '../label'
 import FontAwesome from 'react-native-vector-icons/FontAwesome6'
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: '5%',
         borderBottomWidth: 1 / 3,
-        borderColor: COLORS.GREY_40
+        borderColor: COLORS.GREY_40,
+        paddingBottom: hp(1)
     },
     title: {
         textAlign: 'left',
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
 
         elevation: 18,
         borderRadius: 5,
-        ...COMMON_STYLES.center_
+        ...COMMON_STYLES.center_,
+        marginRight: 10
     }
 })

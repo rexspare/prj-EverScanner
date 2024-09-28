@@ -1,16 +1,18 @@
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React from 'react'
-import { View } from 'react-native'
-import { GenerateHeader, GenerateModal, Layout, TypeItem } from '../../components'
+import Toast from 'react-native-toast-message'
+import { ALERT_HEADER, ALERT_TYPES, SCREENS } from '../../assets/constants'
+import { hp } from '../../assets/stylesGuide'
+import { Business, Contact, Email, Event, Instagram, Location, Telephone, Text, Twitter, Website, WhatsApp, Wifi } from '../../assets/svg'
+import { GenerateHeader, Layout, TypeItem } from '../../components'
+import { InitialNavigationStackParamList } from '../../navigation/rootStack'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import styles from './styles.generate'
-import { Business, Contact, Email, Event, Instagram, Location, Telephone, Text, Twitter, Website, WhatsApp, Wifi } from '../../assets/svg'
-import { hp } from '../../assets/stylesGuide'
-import { useNavigation } from '@react-navigation/native'
-import { SCREENS } from '../../assets/constants'
 
 const GenerateScreen = () => {
   const lang = useAppConfigState(appConfigtStateSelectors.language)
-  const navigation = useNavigation()
+  const navigation = useNavigation<NativeStackNavigationProp<InitialNavigationStackParamList>>();
 
   const TYPES = [
     {
@@ -36,12 +38,14 @@ const GenerateScreen = () => {
     {
       id: 1,
       text: lang['_09'],
-      icon: <Contact width={hp(6)} height={hp(6)} />
+      icon: <Contact width={hp(6)} height={hp(6)} />,
+      available: false
     },
     {
       id: 1,
       text: lang['_10'],
-      icon: <Business width={hp(6)} height={hp(6)} />
+      icon: <Business width={hp(6)} height={hp(6)} />,
+      available: false
     },
     {
       id: 1,
@@ -75,23 +79,33 @@ const GenerateScreen = () => {
     },
   ]
 
+
+  const handleComingSoon = () => {
+    Toast.show({
+      type: ALERT_TYPES.INFO,
+      text1: ALERT_HEADER.INFO,
+      text2: lang["_59"],
+    });
+  }
+
+
   return (
-    <Layout>
+    <Layout fixed={true}>
       <GenerateHeader
         title={lang['_04']}
       />
-      <View style={styles.main}>
+      <Layout contentContainerStyle={styles.main}>
         {
           TYPES.map((item, index) => (
             <TypeItem
               key={index}
               item={item}
               index={index}
-              onPress={() => navigation.navigate(SCREENS.GENERATE_CODE, { type: item?.text })}
+              onPress={() => item?.available == false ? handleComingSoon() : navigation.navigate(SCREENS.GENERATE_CODE, { type: item?.text })}
             />
           ))
         }
-      </View>
+      </Layout>
 
 
     </Layout>

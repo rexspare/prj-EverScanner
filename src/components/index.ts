@@ -8,6 +8,7 @@ import Label from "./label";
 import BodyText from "./bodyText";
 import TypeItem from "./typeItem";
 import SettingItem from "./settingItem";
+import HistoryItem from "./historyItem";
 
 export * from './headers'
 export * from './generations'
@@ -23,5 +24,6 @@ export {
     Label,
     BodyText,
     TypeItem,
-    SettingItem
+    SettingItem,
+    HistoryItem
 }

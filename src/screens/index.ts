@@ -5,6 +5,8 @@ import HistoryScreen from "./history/historyScreen";
 import SettingScreen from "./setting/settingScreen";
 import LanguageScreen from "./setting/languageScreen";
 import GenerateCodeScreen from "./generateCode/generateCodeScreen";
+import OpenFileScreen from "./openFile/openFileScreen";
+import QrCodeScreen from "./qrCode/QrCodeScreen";
 
 export {
     OnBoardingScreen,
@@ -13,5 +15,7 @@ export {
     HistoryScreen,
     SettingScreen,
     LanguageScreen,
-    GenerateCodeScreen
+    GenerateCodeScreen,
+    OpenFileScreen,
+    QrCodeScreen
 }
