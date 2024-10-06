@@ -11,7 +11,7 @@ export type InitialNavigationStackParamList = {
     [SCREENS.APP]: undefined;
     [SCREENS.SETTING]: undefined;
     [SCREENS.LANGUAGE]: undefined;
-    [SCREENS.GENERATE_CODE]: { type: string };
+    [SCREENS.GENERATE_CODE]: { type: string, title: string };
     [SCREENS.OPEN_FILE]: { data: any };
     [SCREENS.QR_CODE]: { data: any };
 };

@@ -8,6 +8,7 @@ import GenerateTwitter from "./generateTwitter";
 import GenerateWhatsapp from "./generateWhatsapp";
 import GenerateLocation from "./generatLocation";
 import GenerateEvents from "./generateEvents";
+import GenerateContact from "./generateContact";
 
 export {
     GenerateText,
@@ -19,5 +20,6 @@ export {
     GenerateTwitter,
     GenerateWhatsapp,
     GenerateLocation,
-    GenerateEvents
+    GenerateEvents,
+    GenerateContact
 }
