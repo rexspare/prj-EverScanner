@@ -1,13 +1,28 @@
 import { StyleSheet, View } from 'react-native'
-import React from 'react'
+import React, { FC, useState } from 'react'
 import { COMMON_STYLES, hp } from '../../assets/stylesGuide'
 import { Telephone, Text } from '../../assets/svg'
 import { PrimaryButton, PrimaryInput } from '..'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
-const GenerateTelephone = () => {
+import { showToast } from '../../utils/myUtils'
+interface IGenerateProps {
+    onGenerate: Function;
+}
+const GenerateTelephone: FC<IGenerateProps> = (props) => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)
+    const { onGenerate = () => { } } = props
+    const [number, setnumber] = useState("")
+
+    const handleGenerate = () => {
+        if (!number) {
+            showToast(lang['_87'])
+            return
+        }
+
+        const data = `tel:${number}`
+        onGenerate(data)
+    }
     return (
         <View style={styles.main}>
 
@@ -16,13 +31,14 @@ const GenerateTelephone = () => {
             <PrimaryInput
                 title={lang["_47"]}
                 placeholder={"+XX XX XXXXX XX"}
-                value={''}
+                value={number}
+                onChange={(txt) => setnumber(txt)}
             />
 
 
             <PrimaryButton
                 title={lang['_33']}
-                onPress={() => { }}
+                onPress={() => handleGenerate()}
                 style={styles.btn}
             />
         </View>

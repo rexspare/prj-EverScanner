@@ -8,13 +8,21 @@ import { Layout } from '../../components';
 import styles from './styles.scanner';
 import RNQRGenerator from 'rn-qr-generator';
 import Toast from 'react-native-toast-message'
-import { ALERT_HEADER, ALERT_TYPES } from '../../assets/constants';
+import { ALERT_HEADER, ALERT_TYPES, ASYNC_KEYS, QR_TYPE, SCREENS } from '../../assets/constants';
+import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig';
+import useStorage from '../../hooks/useStorage';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { InitialNavigationStackParamList } from '../../navigation/rootStack'
 
 const ScannerScreen = () => {
+  const vibrateEnabled = useAppConfigState(appConfigtStateSelectors.vibrateEnabled)
+  const navigation = useNavigation<NativeStackNavigationProp<InitialNavigationStackParamList>>();
+  const { saveEntryInStorage } = useStorage()
   const cameraRef = useRef<RNCamera>(null)
   const [isFrontCamera, setisFrontCamera] = useState(false)
   const [isFlashOn, setisFlashOn] = useState(false)
-  const [isScanning, setisScanning] = useState(false)
+  const isScanningRef = useRef(false)
 
   const CONTROLS = [
     {
@@ -41,24 +49,56 @@ const ScannerScreen = () => {
       RNQRGenerator.detect({
         uri: image.path
       })
-        .then(response => {
+        .then(async (response) => {
+          if (vibrateEnabled) {
+            Vibration.vibrate()
+          }
           const { values } = response; // Array of detected QR code values. Empty if nothing found.
           if (values?.length > 0) {
-            console.log("values == >>", values);
+            const mData = {
+              type: QR_TYPE.SCANNED,
+              data: values[0],
+            }
+            const res = await saveEntryInStorage(ASYNC_KEYS.SCANNED, mData)
+            if (res) {
+              navigation.navigate(SCREENS.OPEN_FILE, { data: res })
+            }
           } else {
             handleNotDetected()
           }
         })
         .catch(error => {
+          if (vibrateEnabled) {
+            Vibration.vibrate()
+          }
           handleNotDetected()
         });
     })
       .catch(() => { })
   }
 
-  const handleScan = (val: any) => {
-    console.log("val == >>", val?.data);
-    Vibration.vibrate()
+  const handleScan = async (val: any) => {
+    if (val?.data) {
+      if (isScanningRef.current == false) {
+        isScanningRef.current = true
+        if (vibrateEnabled) {
+          Vibration.vibrate()
+        }
+        const mData = {
+          type: QR_TYPE.SCANNED,
+          data: val?.data,
+        }
+        const res = await saveEntryInStorage(ASYNC_KEYS.SCANNED, mData)
+        if (res) {
+          navigation.navigate(SCREENS.OPEN_FILE, { data: res })
+        }
+        setTimeout(() => {
+          isScanningRef.current = false
+        }, 1500);
+      }
+    } else {
+      handleNotDetected()
+    }
   }
 
   const handleNotDetected = () => {

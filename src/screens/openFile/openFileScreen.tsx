@@ -3,12 +3,19 @@ import { BackeHeader, BodyText, Layout } from '../../components';
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig';
 import { View, TouchableOpacity } from 'react-native';
 import styles from './styles.openFile';
-import { Copy, Delete, ScanHistory, Share } from '../../assets/svg';
+import { Copy, Delete, QRScan, ScanHistory, Share } from '../../assets/svg';
 import { COLORS, hp } from '../../assets/stylesGuide';
 import moment from 'moment';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { InitialNavigationStackParamList } from '../../navigation/rootStack'
+import { SCREENS } from '../../assets/constants';
 
 const OpenFileScreen: FC = () => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)
+    const navigation = useNavigation<NativeStackNavigationProp<InitialNavigationStackParamList>>();
+    const route: any = useRoute()
+    const QrData = route.params?.data
 
     return (
         <Layout fixed={true} >
@@ -23,16 +30,17 @@ const OpenFileScreen: FC = () => {
 
                     <View style={styles.context}>
                         <BodyText style={styles.dataTxt}>{lang['_68']}</BodyText>
-                        <BodyText style={styles.date}>{moment().format('DD MMM YYYY, HH:MM A')}</BodyText>
+                        <BodyText style={styles.date}>{moment.unix(QrData?.createdAt).format('DD MMM YYYY, hh:mm A')}</BodyText>
                     </View>
                 </View>
 
                 <View style={styles.line}></View>
 
-                <BodyText >https://www.youtube.com/watch?v=Zd9g7sKvgIM</BodyText>
+                <BodyText >{QrData?.data}</BodyText>
 
                 <TouchableOpacity
                     activeOpacity={0.8}
+                    onPress={() => navigation.navigate(SCREENS.QR_CODE, { data: QrData })}
                     style={styles.btn}
                 >
                     <BodyText style={styles.btnTxt}>{lang['_64']}</BodyText>

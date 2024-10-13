@@ -33,31 +33,31 @@ const GenerateScreen = () => {
       type: QR_TYPE.WIFI,
       icon: <Wifi width={hp(6)} height={hp(6)} />
     },
-    {
-      id: 1,
-      text: lang['_08'],
-      type: QR_TYPE.EVENT,
-      icon: <Event width={hp(6)} height={hp(6)} />
-    },
+    // {
+    //   id: 1,
+    //   text: lang['_08'],
+    //   type: QR_TYPE.EVENT,
+    //   icon: <Event width={hp(6)} height={hp(6)} />
+    // },
     {
       id: 1,
       text: lang['_09'],
       type: QR_TYPE.CONTACT,
       icon: <Contact width={hp(6)} height={hp(6)} />,
     },
-    {
-      id: 1,
-      text: lang['_10'],
-      type: QR_TYPE.BUSINESS,
-      icon: <Business width={hp(6)} height={hp(6)} />,
-      available: false
-    },
-    {
-      id: 1,
-      text: lang['_11'],
-      type: QR_TYPE.LOCATION,
-      icon: <Location width={hp(6)} height={hp(6)} />
-    },
+    // {
+    //   id: 1,
+    //   text: lang['_10'],
+    //   type: QR_TYPE.BUSINESS,
+    //   icon: <Business width={hp(6)} height={hp(6)} />,
+    //   available: false
+    // },
+    // {
+    //   id: 1,
+    //   text: lang['_11'],
+    //   type: QR_TYPE.LOCATION,
+    //   icon: <Location width={hp(6)} height={hp(6)} />
+    // },
     {
       id: 1,
       text: lang['_12'],

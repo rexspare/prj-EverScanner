@@ -29,6 +29,11 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: '48%'
+    },
+    inactiveBtn: {
+        borderWidth: 3 / 2,
+        borderColor: COLORS.PRIMARY,
+        backgroundColor: 'transparent',
     }
 })
 

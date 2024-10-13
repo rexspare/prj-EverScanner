@@ -7,9 +7,10 @@ import { appConfigtStateSelectors, useAppConfigState } from '../../states/appCon
 import styles from './styles.setting'
 import { Switch } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { SCREENS } from '../../assets/constants'
+import { ASYNC_KEYS, SCREENS } from '../../assets/constants'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { InitialNavigationStackParamList } from '../../navigation/rootStack'
+import { setItem } from '../../services/asyncStorage'
 
 
 const SettingScreen = () => {
@@ -17,7 +18,13 @@ const SettingScreen = () => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)
     const vibrateEnabled = useAppConfigState(appConfigtStateSelectors.vibrateEnabled)
     const setVibrateEnabled = useAppConfigState(appConfigtStateSelectors.setVibrateEnabled)
-    const toggleSwitch = () => setVibrateEnabled(!vibrateEnabled);
+
+
+    const toggleSwitch = async () => {
+        let value = !vibrateEnabled
+        setVibrateEnabled(!vibrateEnabled);
+        await setItem(ASYNC_KEYS.VIBRATE, value == true ? 'true' : 'false')
+    }
 
     const SETTINGS = [
         {

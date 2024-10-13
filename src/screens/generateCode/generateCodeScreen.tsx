@@ -1,37 +1,39 @@
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
-import { QR_TYPE } from '../../assets/constants';
-import { BackeHeader, GenerateContact, GenerateEmail, GenerateEvents, GenerateInstagram, GenerateLocation, GenerateTelephone, GenerateText, GenerateTwitter, GenerateWebsite, GenerateWhatsapp, GenerateWifi, If, Layout } from '../../components';
-import RNQRGenerator from 'rn-qr-generator';
-import { handleDownloadMedia } from '../../utils/myUtils';
+import { ASYNC_KEYS, QR_TYPE, SCREENS } from '../../assets/constants';
+import { BackeHeader, GenerateContact, GenerateEmail, GenerateInstagram, GenerateTelephone, GenerateText, GenerateTwitter, GenerateWebsite, GenerateWhatsapp, GenerateWifi, If, Layout } from '../../components';
+import useStorage from '../../hooks/useStorage';
+import { InitialNavigationStackParamList } from '../../navigation/rootStack';
 
 const GenerateCodeScreen: FC = () => {
     const route: any = useRoute()
+    const navigation = useNavigation<NativeStackNavigationProp<InitialNavigationStackParamList>>();
+    const { saveEntryInStorage, isLoading, setisLoading } = useStorage()
 
     const type = route?.params?.type?.toUpperCase()
     const title = route?.params?.title?.toUpperCase()
 
-    const handleGenerateQrCode = (data: any) => {
+    const handleGenerateQrCode = async (data: any) => {
         if (!data) {
             return
         }
-        RNQRGenerator.generate({
-            value: data,
-            height: 400,
-            width: 400,
-            base64: true,
-            correctionLevel: 'H',
-            padding: { top: 10, right: 10, bottom: 10, left: 10 }
-        })
-            .then(async (response) => {
-                const { uri, width, height, base64 } = response;
+        try {
+            setisLoading(true)
+            const mData = {
+                type: type,
+                data: data,
+            }
+            const res = await saveEntryInStorage(ASYNC_KEYS.HISTORY, mData)
+            if (res) {
+                navigation.navigate(SCREENS.QR_CODE, { data: res })
+            }
 
-                const DownloadedMedia = await handleDownloadMedia(uri)
-                console.log({ DownloadedMedia });
-
-            })
-            .catch(error => console.log('Cannot create QR code', error));
-
+        } catch (error) {
+            console.log("handleGenerateQrCode ==>>", error);
+        } finally {
+            setisLoading(false)
+        }
 
 
     }
@@ -91,17 +93,17 @@ const GenerateCodeScreen: FC = () => {
                     />
                 </If>
 
-                <If condition={type == QR_TYPE.LOCATION}>
+                {/* <If condition={type == QR_TYPE.LOCATION}>
                     <GenerateLocation
                         onGenerate={(data: any) => handleGenerateQrCode(data)}
                     />
-                </If>
+                </If> */}
 
-                <If condition={type == QR_TYPE.EVENT}>
+                {/* <If condition={type == QR_TYPE.EVENT}>
                     <GenerateEvents
                         onGenerate={(data: any) => handleGenerateQrCode(data)}
                     />
-                </If>
+                </If> */}
 
                 <If condition={type == QR_TYPE.CONTACT}>
                     <GenerateContact

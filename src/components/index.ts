@@ -9,6 +9,8 @@ import BodyText from "./bodyText";
 import TypeItem from "./typeItem";
 import SettingItem from "./settingItem";
 import HistoryItem from "./historyItem";
+import AnimatedCheckBox from "./animatedCheckBox";
+import RadioButton from "./radioButton";
 
 export * from './headers'
 export * from './generations'
@@ -25,5 +27,7 @@ export {
     BodyText,
     TypeItem,
     SettingItem,
-    HistoryItem
+    HistoryItem,
+    AnimatedCheckBox,
+    RadioButton
 }

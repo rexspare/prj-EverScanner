@@ -144,7 +144,7 @@ const downloadFile = async (fileUrl: string) => {
 
         const fileName = Date.now();
 
-        const AndroidPath = `${RNFS.DownloadDirectoryPath}/Everace/Everscanner`
+        const AndroidPath = `${RNFS.PicturesDirectoryPath}/Everace/Everscanner`
         const IosPath = `${RNFS.LibraryDirectoryPath}/Images/${fileName}`;
 
         const destPath = Platform.OS === 'android'

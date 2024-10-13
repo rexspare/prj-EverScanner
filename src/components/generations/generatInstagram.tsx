@@ -1,13 +1,29 @@
+import React, { FC, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import React from 'react'
-import { COMMON_STYLES, hp } from '../../assets/stylesGuide'
-import { Instagram, Text } from '../../assets/svg'
 import { PrimaryButton, PrimaryInput } from '..'
+import { hp } from '../../assets/stylesGuide'
+import { Instagram } from '../../assets/svg'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { showToast } from '../../utils/myUtils'
 
-const GenerateInstagram = () => {
+interface IGenerateProps {
+    onGenerate: Function;
+}
+const GenerateInstagram: FC<IGenerateProps> = (props) => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)
+    const { onGenerate = () => { } } = props
+    const [value, setvalue] = useState("")
+
+    const handleGenerate = () => {
+        if (!value) {
+            showToast(lang['_87'])
+            return
+        }
+
+        const data = `https://www.instagram.com/${value}`
+        onGenerate(data)
+    }
+
     return (
         <View style={styles.main}>
 
@@ -16,13 +32,14 @@ const GenerateInstagram = () => {
             <PrimaryInput
                 title={lang["_45"]}
                 placeholder={lang["_46"]}
-                value={''}
+                value={value}
+                onChange={(txt) => setvalue(txt)}
             />
 
 
             <PrimaryButton
                 title={lang['_33']}
-                onPress={() => { }}
+                onPress={() => handleGenerate()}
                 style={styles.btn}
             />
         </View>

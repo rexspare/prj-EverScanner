@@ -8,10 +8,11 @@ import moment from 'moment'
 interface IHistoryItem {
     item: any;
     onPress?: Function;
+    onDelete?: Function;
 }
 
 const HistoryItem: FC<IHistoryItem> = (props: IHistoryItem) => {
-    const { item, onPress = () => { } } = props
+    const { item, onPress = () => { }, onDelete = () => { } } = props
     return (
         <TouchableOpacity
             activeOpacity={0.8}
@@ -23,10 +24,11 @@ const HistoryItem: FC<IHistoryItem> = (props: IHistoryItem) => {
             <View style={styles.context}>
 
                 <View style={styles.row}>
-                    <BodyText style={styles.title} numberOfLines={1}>https://itunes.com</BodyText>
+                    <BodyText style={styles.title} numberOfLines={1}>{item.data}</BodyText>
 
                     <TouchableOpacity
                         activeOpacity={0.8}
+                        onPress={() => onDelete()}
                         hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
                     >
                         <Delete width={hp(2.5)} height={hp(2.5)} />
@@ -36,7 +38,7 @@ const HistoryItem: FC<IHistoryItem> = (props: IHistoryItem) => {
                 <View style={styles.row}>
                     <BodyText style={styles.subtle}></BodyText>
 
-                    <BodyText style={styles.subtle}>{moment().format('DD MMM YYYY, HH:MM A')}</BodyText>
+                    <BodyText style={styles.subtle}>{moment.unix(item?.createdAt).format('DD MMM YYYY, hh:mm A')}</BodyText>
                 </View>
 
             </View>

@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { FC, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PrimaryButton, PrimaryInput } from '..'
 import { hp } from '../../assets/stylesGuide'
 import { Website, WhatsApp, Wifi } from '../../assets/svg'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
-
-const GenerateWhatsapp = () => {
+import { showToast } from '../../utils/myUtils'
+interface IGenerateProps {
+    onGenerate: Function;
+}
+const GenerateWhatsapp: FC<IGenerateProps> = (props) => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)
+    const { onGenerate = () => { } } = props
+    const [number, setnumber] = useState("")
+    // 
+
+    const handleGenerate = () => {
+        if (!number) {
+            showToast(lang['_87'])
+            return
+        }
+
+        const data = `https://wa.me/${number}`
+        onGenerate(data)
+    }
     return (
         <View style={styles.main}>
 
@@ -15,12 +31,13 @@ const GenerateWhatsapp = () => {
             <PrimaryInput
                 title={lang["_41"]}
                 placeholder={lang["_42"]}
-                value={''}
+                value={number}
+                onChange={(txt) => setnumber(txt)}
             />
 
             <PrimaryButton
                 title={lang['_33']}
-                onPress={() => { }}
+                onPress={() => handleGenerate()}
                 style={styles.btn}
             />
         </View>

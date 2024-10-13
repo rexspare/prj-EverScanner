@@ -60,8 +60,8 @@
     "_58": "Enter any details",
     "_59": "This feature is coming soon. Stay Tuned!",
     "_60": "History",
-    "_61": "Scan",
-    "_62": "Create",
+    "_61": "Scanned",
+    "_62": "Createt",
     "_63": "Result",
     "_64": "Show Qr Code",
     "_65": "Share",
@@ -86,5 +86,15 @@
     "_84": "Country",
     "_85": "Website",
     "_86": "Address",
-    "_87": "Required fields cannot be empty!"
+    "_87": "Required fields cannot be empty!",
+    "_88": "Hidden",
+    "_89": "Encryption/Security",
+    "_90": "Subject",
+    "_91": "Message",
+    "_92": "Tweet",
+    "_93": "Account",
+    "_94": "Choose an option",
+    "_95": "Post a tweet",
+    "_96": "QR Code saved successfully!",
+    "_97": "Could not save media to device!"
 }
