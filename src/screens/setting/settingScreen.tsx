@@ -71,7 +71,8 @@ const SettingScreen = () => {
             title: lang['_25'],
             subtle: lang['_26'],
             icon: <Privacy width={hp(2.6)} height={hp(2.6)} />,
-            onPress: () => { },
+            onPress: () => navigation.navigate(SCREENS.PRIVACY),
+            // Linking.openURL("https://www.termsfeed.com/live/d9dba4dd-6c07-441d-8e25-6ca9aadbacf2"),
         },
         {
             id: 4,

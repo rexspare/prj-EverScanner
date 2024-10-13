@@ -7,6 +7,7 @@ import LanguageScreen from "./setting/languageScreen";
 import GenerateCodeScreen from "./generateCode/generateCodeScreen";
 import OpenFileScreen from "./openFile/openFileScreen";
 import QrCodeScreen from "./qrCode/QrCodeScreen";
+import PrivacyScreen from "./setting/privacyScreen";
 
 export {
     OnBoardingScreen,
@@ -17,5 +18,6 @@ export {
     LanguageScreen,
     GenerateCodeScreen,
     OpenFileScreen,
-    QrCodeScreen
+    QrCodeScreen,
+    PrivacyScreen
 }

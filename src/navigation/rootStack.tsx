@@ -3,7 +3,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SCREENS } from '../assets/constants';
-import { GenerateCodeScreen, LanguageScreen, OnBoardingScreen, OpenFileScreen, QrCodeScreen, SettingScreen } from '../screens';
+import { GenerateCodeScreen, LanguageScreen, OnBoardingScreen, OpenFileScreen, PrivacyScreen, QrCodeScreen, SettingScreen } from '../screens';
 import AppStack from './appStack';
 import { appConfigtStateSelectors, useAppConfigState } from '../states/appConfig';
 
@@ -15,6 +15,7 @@ export type InitialNavigationStackParamList = {
     [SCREENS.GENERATE_CODE]: { type: string, title: string };
     [SCREENS.OPEN_FILE]: { data: any };
     [SCREENS.QR_CODE]: { data: any };
+    [SCREENS.PRIVACY]: undefined;
 };
 
 const Stack = createNativeStackNavigator<InitialNavigationStackParamList>();
@@ -38,6 +39,7 @@ const RootStack = () => {
                 <Stack.Screen name={SCREENS.GENERATE_CODE} component={GenerateCodeScreen} />
                 <Stack.Screen name={SCREENS.OPEN_FILE} component={OpenFileScreen} />
                 <Stack.Screen name={SCREENS.QR_CODE} component={QrCodeScreen} />
+                <Stack.Screen name={SCREENS.PRIVACY} component={PrivacyScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )
