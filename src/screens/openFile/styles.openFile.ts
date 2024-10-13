@@ -71,6 +71,13 @@ const styles = StyleSheet.create({
         fontSize: FONT_SIZE._12,
         marginTop: hp(0.8),
         fontFamily: FONTS.MEDIUM
+    },
+    commitBtn: {
+        width: '60%',
+        marginTop: hp(5)
+    },
+    qrdata: {
+        textAlign: 'left'
     }
 
 })

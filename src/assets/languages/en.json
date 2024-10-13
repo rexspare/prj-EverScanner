@@ -61,7 +61,7 @@
     "_59": "This feature is coming soon. Stay Tuned!",
     "_60": "History",
     "_61": "Scanned",
-    "_62": "Createt",
+    "_62": "Created",
     "_63": "Result",
     "_64": "Show Qr Code",
     "_65": "Share",
@@ -96,5 +96,11 @@
     "_94": "Choose an option",
     "_95": "Post a tweet",
     "_96": "QR Code saved successfully!",
-    "_97": "Could not save media to device!"
+    "_97": "Could not save media to device!",
+    "_98": "Commit",
+    "_99": "Copied to Clipboard",
+    "_100": "Scanned Data",
+    "_101": "Please give EverScanner Permission to access Contacts",
+    "_102": "The data was malformed!",
+    "_103": "Contact has beem added to phonebook!"
 }

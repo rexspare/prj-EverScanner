@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 import { COLORS, hp } from '../../assets/stylesGuide'
 import { Privacy, Rate, Share, Vibrate } from '../../assets/svg'
-import { BackeHeader, Label, Layout, SettingItem } from '../../components'
+import { BackeHeader, Label, Layout, SettingItem, Spacer } from '../../components'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import styles from './styles.setting'
 import { Switch } from 'react-native'
@@ -77,7 +77,7 @@ const SettingScreen = () => {
             id: 4,
             title: lang['_27'],
             subtle: lang['_28'],
-            icon: <Share width={hp(2.6)} height={hp(2.6)} />,
+            icon: <Share width={hp(2.6)} height={hp(2.6)} fill={COLORS.INACTIVE}/>,
             onPress: () => { },
         }
     ]
@@ -113,6 +113,8 @@ const SettingScreen = () => {
                         />
                     ))
                 }
+
+                <Spacer />
 
             </Layout>
 

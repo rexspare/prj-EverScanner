@@ -170,6 +170,105 @@ const downloadFile = async (fileUrl: string) => {
     });
 };
 
+const requestContactsPermission = async () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (Platform.OS == 'ios') {
+                resolve(true)
+            } else {
+                const result = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_CONTACTS, {
+                    title: 'Contacts',
+                    message: 'This app would like to access your contacts.',
+                    buttonPositive: 'Please accept EverScanner',
+                })
+                const result1 = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
+                    title: 'Contacts',
+                    message: 'This app would like to access your contacts.',
+                    buttonPositive: 'Please accept EverScanner',
+                })
+
+                if (result == PermissionsAndroid.RESULTS.GRANTED && result1 == PermissionsAndroid.RESULTS.GRANTED) {
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            }
+        } catch (error) {
+            console.log("requestContactsPermission ==>>", error);
+
+            resolve(false)
+        }
+
+    })
+}
+
+const requestFineLocationPermission = async () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (Platform.OS == 'ios') {
+                resolve(true)
+            } else {
+                const result = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
+                    title: 'Location permission is required for WiFi connections',
+                    message: 'This app needs location permission as this is required  to scan for wifi networks.',
+                    buttonPositive: 'Please accept EverScanner',
+                })
+
+
+                if (result == PermissionsAndroid.RESULTS.GRANTED) {
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            }
+        } catch (error) {
+            console.log("requestFineLocationPermission ==>>", error);
+            resolve(false)
+        }
+
+    })
+}
+
+const parseWiFiString = (wifiString: string) => {
+    // Remove the "WIFI:" prefix if it exists
+    const cleanedString = wifiString.replace(/^WIFI:/, '');
+
+    // Split the string by semicolon and filter out empty entries
+    const entries = cleanedString.split(';').filter(entry => entry);
+
+    // Initialize an object to hold the parsed information
+    const wifiInfo: any = {
+        type: null,
+        ssid: null,
+        password: null,
+        hidden: false
+    };
+
+    // Iterate through each entry to extract values
+    entries.forEach(entry => {
+        const [key, value] = entry.split(':');
+        switch (key) {
+            case 'T':
+                wifiInfo.type = value;
+                break;
+            case 'S':
+                wifiInfo.ssid = value;
+                break;
+            case 'P':
+                wifiInfo.password = value;
+                break;
+            case 'H':
+                wifiInfo.hidden = value === 'true';
+                break;
+            default:
+                break;
+        }
+    });
+
+    return wifiInfo;
+};
+
+
 
 export {
     showToast,
@@ -180,5 +279,8 @@ export {
     pasteFromClipboard,
     copyToClipboard,
     validateEmail,
-    handleDownloadMedia
+    handleDownloadMedia,
+    requestContactsPermission,
+    requestFineLocationPermission,
+    parseWiFiString
 }
