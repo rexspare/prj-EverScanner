@@ -14,7 +14,7 @@ const GenerateScreen = () => {
   const lang = useAppConfigState(appConfigtStateSelectors.language)
   const navigation = useNavigation<NativeStackNavigationProp<InitialNavigationStackParamList>>();
 
-  const TYPES = [
+  const TYPES: any = [
     {
       id: 1,
       text: lang['_05'],
@@ -107,7 +107,7 @@ const GenerateScreen = () => {
       />
       <Layout contentContainerStyle={styles.main}>
         {
-          TYPES.map((item, index) => (
+          TYPES.map((item: any, index: number) => (
             <TypeItem
               key={index}
               item={item}

@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { BodyText, Label, PrimaryButton, PrimaryInput } from '..'
+import { Label, PrimaryButton, PrimaryInput } from '..'
 import { FONT_SIZE, hp } from '../../assets/stylesGuide'
-import { Contact, Website, WhatsApp, Wifi } from '../../assets/svg'
+import { Contact } from '../../assets/svg'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import { showToast } from '../../utils/myUtils'
 interface IGenerateProps {

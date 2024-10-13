@@ -1,13 +1,26 @@
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React from 'react'
-import { Text, View } from 'react-native'
-import { BodyText, Label, Layout, PrimaryButton } from '../../components'
-import styles from './styles.onboarding'
-import { QRScan } from '../../assets/svg'
+import { View } from 'react-native'
+import { ASYNC_KEYS, SCREENS } from '../../assets/constants'
 import { hp } from '../../assets/stylesGuide'
+import { QRScan } from '../../assets/svg'
+import { BodyText, Label, Layout, PrimaryButton } from '../../components'
+import { InitialNavigationStackParamList } from '../../navigation/rootStack'
+import { setItem } from '../../services/asyncStorage'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
+import styles from './styles.onboarding'
 
 const OnBoardingScreen = () => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)
+    const navigation = useNavigation<NativeStackNavigationProp<InitialNavigationStackParamList>>();
+
+    const handleContinue = async () => {
+        await setItem(ASYNC_KEYS.ONBOARDING, "true")
+        navigation.replace(SCREENS.APP)
+    }
+
+
     return (
         <Layout
             fixed={true}
@@ -28,7 +41,7 @@ const OnBoardingScreen = () => {
 
                 <PrimaryButton
                     title={lang['_03']}
-                    onPress={() => { }}
+                    onPress={() => handleContinue()}
                 />
 
             </View>

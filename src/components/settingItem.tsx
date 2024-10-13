@@ -1,7 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { FC } from 'react'
-import { COLORS, FONT_SIZE, FONTS, hp } from '../assets/stylesGuide'
-import Label from './label';
+import React, { FC } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { COLORS, FONT_SIZE, FONTS, hp } from '../assets/stylesGuide';
 import BodyText from './bodyText';
 import If from './if';
 

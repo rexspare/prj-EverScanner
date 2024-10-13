@@ -1,13 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { GenerateScreen, HistoryScreen, ScannerScreen } from '../screens';
 import { TouchableOpacity, View } from 'react-native';
-import { COLORS, FONT_SIZE, FONTS, hp, wp } from '../assets/stylesGuide';
-import { QRScan } from '../assets/svg';
-import { hasNotch, isIOS } from '../utils/myUtils';
 import { SCREENS } from '../assets/constants';
-import { BodyText, If, Label } from '../components';
+import { COLORS, FONT_SIZE, FONTS, hp, wp } from '../assets/stylesGuide';
 import { TabGenerate, TabHistory, TabScanner } from '../assets/svg/tab';
+import { BodyText, If } from '../components';
+import { GenerateScreen, HistoryScreen, ScannerScreen } from '../screens';
+import { hasNotch, isIOS } from '../utils/myUtils';
 
 const Tab = createBottomTabNavigator();
 

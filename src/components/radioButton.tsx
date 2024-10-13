@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Animated, StyleSheet, TouchableOpacity, ViewStyle, View } from 'react-native';
+import { Animated, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { COLORS, COMMON_STYLES, FONT_SIZE, hp } from '../assets/stylesGuide';
-import Entypo from 'react-native-vector-icons/Entypo'
 import BodyText from './bodyText';
 
 interface radioButtonProps {

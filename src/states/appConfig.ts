@@ -12,6 +12,8 @@ export interface IAppConfig {
     setLanguage: (val: any) => void;
     vibrateEnabled: boolean;
     setVibrateEnabled: (val: boolean) => void;
+    isFirstLaunch: boolean;
+    setisFirstLaunch: (val: boolean) => void;
 }
 
 const initialState: IAppConfig = {
@@ -19,6 +21,8 @@ const initialState: IAppConfig = {
     setLanguage: () => { },
     vibrateEnabled: true,
     setVibrateEnabled: () => { },
+    isFirstLaunch: true,
+    setisFirstLaunch: () => { }
 };
 
 /**
@@ -28,6 +32,7 @@ export const useAppConfigState = create<IAppConfig>((set, get) => ({
     ...initialState,
     setLanguage: val => set({ language: val }),
     setVibrateEnabled: val => set({ vibrateEnabled: val }),
+    setisFirstLaunch: val => set({ isFirstLaunch: val }),
 }));
 
 /**

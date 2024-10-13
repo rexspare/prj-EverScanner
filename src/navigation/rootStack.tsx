@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SCREENS } from '../assets/constants';
 import { GenerateCodeScreen, LanguageScreen, OnBoardingScreen, OpenFileScreen, QrCodeScreen, SettingScreen } from '../screens';
 import AppStack from './appStack';
+import { appConfigtStateSelectors, useAppConfigState } from '../states/appConfig';
 
 export type InitialNavigationStackParamList = {
     [SCREENS.ONBOARDING]: undefined;
@@ -20,13 +21,17 @@ const Stack = createNativeStackNavigator<InitialNavigationStackParamList>();
 
 
 const RootStack = () => {
+    const isFirstLaunch = useAppConfigState(appConfigtStateSelectors.isFirstLaunch)
+
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
                 headerShown: false,
                 animation: 'slide_from_right'
             }}>
-                {/* <Stack.Screen name={SCREENS.ONBOARDING} component={OnBoardingScreen} /> */}
+                {isFirstLaunch &&
+                    <Stack.Screen name={SCREENS.ONBOARDING} component={OnBoardingScreen} />
+                }
                 <Stack.Screen name={SCREENS.APP} component={AppStack} />
                 <Stack.Screen name={SCREENS.SETTING} component={SettingScreen} />
                 <Stack.Screen name={SCREENS.LANGUAGE} component={LanguageScreen} />

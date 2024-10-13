@@ -1,20 +1,19 @@
-import React, { FC } from 'react';
-import { BackeHeader, BodyText, Layout, PrimaryButton } from '../../components';
-import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig';
-import { View, TouchableOpacity, Linking, Platform, Alert } from 'react-native';
-import styles from './styles.openFile';
-import { Copy, Delete, QRScan, ScanHistory, Share } from '../../assets/svg';
-import { COLORS, hp } from '../../assets/stylesGuide';
-import moment from 'moment';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { InitialNavigationStackParamList } from '../../navigation/rootStack'
-import { ALERT_HEADER, ALERT_TYPES, SCREENS } from '../../assets/constants';
-import { copyToClipboard, parseWiFiString, requestContactsPermission, requestFineLocationPermission, showToast } from '../../utils/myUtils';
-import { PermissionsAndroid } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import moment from 'moment';
+import React, { FC } from 'react';
+import { Linking, Platform, TouchableOpacity, View } from 'react-native';
 import Contacts from 'react-native-contacts';
-import vCardParser from 'vcard-parser';
 import WifiManager from "react-native-wifi-reborn";
+import vCardParser from 'vcard-parser';
+import { ALERT_HEADER, ALERT_TYPES, SCREENS } from '../../assets/constants';
+import { COLORS, hp } from '../../assets/stylesGuide';
+import { Copy, ScanHistory, Share } from '../../assets/svg';
+import { BackeHeader, BodyText, Layout, PrimaryButton } from '../../components';
+import { InitialNavigationStackParamList } from '../../navigation/rootStack';
+import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig';
+import { copyToClipboard, parseWiFiString, requestContactsPermission, requestFineLocationPermission, showToast } from '../../utils/myUtils';
+import styles from './styles.openFile';
 
 const OpenFileScreen: FC = () => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)

@@ -1,10 +1,9 @@
-import { StyleSheet, View } from 'react-native'
 import React, { FC, useState } from 'react'
-import { COMMON_STYLES, hp } from '../../assets/stylesGuide'
-import { Text } from '../../assets/svg'
+import { StyleSheet, View } from 'react-native'
 import { PrimaryButton, PrimaryInput } from '..'
+import { hp } from '../../assets/stylesGuide'
+import { Text } from '../../assets/svg'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { showToast } from '../../utils/myUtils'
 
 interface IGenerateProps {

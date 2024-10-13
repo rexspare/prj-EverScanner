@@ -11,6 +11,7 @@ import { English } from './src/assets/languages';
 const App = () => {
   const setVibrateEnabled = useAppConfigState(appConfigtStateSelectors.setVibrateEnabled)
   const setLanguage = useAppConfigState(appConfigtStateSelectors.setLanguage)
+  const setisFirstLaunch = useAppConfigState(appConfigtStateSelectors.setisFirstLaunch)
 
   useEffect(() => {
     const init = async () => {
@@ -27,10 +28,19 @@ const App = () => {
       } else {
         setLanguage(English)
       }
+
+      const isFirstLaunch = await getItem(ASYNC_KEYS.ONBOARDING, null)
+      if (isFirstLaunch != "true") {
+        setisFirstLaunch(true)
+      } else {
+        setisFirstLaunch(false)
+      }
     };
 
     init().finally(async () => {
-      await BootSplash.hide({ fade: true });
+      setTimeout(async () => {
+        await BootSplash.hide({ fade: true });
+      }, 1000);
     });
   }, []);
 

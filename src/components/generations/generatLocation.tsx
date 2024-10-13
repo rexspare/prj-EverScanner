@@ -1,10 +1,9 @@
-import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import { COMMON_STYLES, hp } from '../../assets/stylesGuide'
-import { Location, Telephone, Text } from '../../assets/svg'
+import { StyleSheet, View } from 'react-native'
 import { PrimaryButton, PrimaryInput } from '..'
+import { hp } from '../../assets/stylesGuide'
+import { Location } from '../../assets/svg'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const GenerateLocation = () => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)

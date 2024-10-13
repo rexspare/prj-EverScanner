@@ -1,14 +1,14 @@
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, View } from 'react-native'
 import { ASYNC_KEYS, SCREENS } from '../../assets/constants'
-import { COLORS, hp } from '../../assets/stylesGuide'
+import { hp } from '../../assets/stylesGuide'
 import { GenerateHeader, HistoryItem, Layout, PrimaryButton, Spacer } from '../../components'
+import useStorage from '../../hooks/useStorage'
 import { InitialNavigationStackParamList } from '../../navigation/rootStack'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import styles from './styles.history'
-import useStorage from '../../hooks/useStorage'
 
 const HistoryScreen = () => {
     const lang = useAppConfigState(appConfigtStateSelectors.language)

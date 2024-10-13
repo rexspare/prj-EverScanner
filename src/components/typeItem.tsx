@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { FC } from 'react'
+import React, { FC } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { COLORS, FONT_SIZE, FONTS, hp, wp } from '../assets/stylesGuide';
 import BodyText from './bodyText';
 

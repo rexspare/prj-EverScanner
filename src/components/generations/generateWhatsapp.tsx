@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PrimaryButton, PrimaryInput } from '..'
 import { hp } from '../../assets/stylesGuide'
-import { Website, WhatsApp, Wifi } from '../../assets/svg'
+import { WhatsApp } from '../../assets/svg'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import { showToast } from '../../utils/myUtils'
 interface IGenerateProps {

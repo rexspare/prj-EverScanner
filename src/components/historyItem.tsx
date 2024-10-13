@@ -1,9 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { FC } from 'react'
-import { Delete, ScanHistory } from '../assets/svg'
-import { COLORS, FONT_SIZE, FONTS, hp } from '../assets/stylesGuide'
-import BodyText from './bodyText'
 import moment from 'moment'
+import React, { FC } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { COLORS, FONT_SIZE, FONTS, hp } from '../assets/stylesGuide'
+import { Delete, ScanHistory } from '../assets/svg'
+import BodyText from './bodyText'
 
 interface IHistoryItem {
     item: any;
