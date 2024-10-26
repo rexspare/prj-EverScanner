@@ -1,7 +1,7 @@
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import React, { useEffect, useState } from 'react'
-import { FlatList, View } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Alert, FlatList, View } from 'react-native'
 import { ASYNC_KEYS, SCREENS } from '../../assets/constants'
 import { hp } from '../../assets/stylesGuide'
 import { GenerateHeader, HistoryItem, Layout, PrimaryButton, Spacer } from '../../components'
@@ -17,18 +17,11 @@ const HistoryScreen = () => {
     const [activetab, setactivetab] = useState<"Scan" | "Create">("Scan")
     const [data, setdata] = useState([])
 
-    useEffect(() => {
-      const subscribe = navigation.addListener('focus', () => {
-        getHistoryData()
-      })
-
-      return subscribe()
-    }, [navigation])
-    
-
-    useEffect(() => {
-        getHistoryData()
-    }, [activetab])
+    useFocusEffect(
+        useCallback(() => {
+          getHistoryData()
+        }, [activetab])
+      )
 
     const getHistoryData = async () => {
         try {

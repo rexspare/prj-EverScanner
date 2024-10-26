@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontFamily: FONTS.MEDIUM
+        fontFamily: FONTS.MEDIUM,
+        maxWidth:'90%'
     },
     subtle: {
         color: COLORS.INACTIVE,
