@@ -5,7 +5,7 @@ import { Privacy, Rate, Share, Vibrate } from '../../assets/svg'
 import { BackeHeader, Label, Layout, SettingItem, Spacer } from '../../components'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import styles from './styles.setting'
-import { Switch } from 'react-native'
+import { Linking, Switch, Share as RNShare } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { ASYNC_KEYS, SCREENS } from '../../assets/constants'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -64,7 +64,13 @@ const SettingScreen = () => {
             title: lang['_23'],
             subtle: lang['_24'],
             icon: <Rate width={hp(2.6)} height={hp(2.6)} />,
-            onPress: () => { },
+            onPress: () => {
+                try {
+                    Linking.openURL('https://play.google.com/store/apps/details?id=com.everace.tech.scannerapp')
+                } catch (error) {
+
+                }
+            },
         },
         {
             id: 2,
@@ -78,8 +84,16 @@ const SettingScreen = () => {
             id: 4,
             title: lang['_27'],
             subtle: lang['_28'],
-            icon: <Share width={hp(2.6)} height={hp(2.6)} fill={COLORS.INACTIVE}/>,
-            onPress: () => { },
+            icon: <Share width={hp(2.6)} height={hp(2.6)} fill={COLORS.INACTIVE} />,
+            onPress: () => {
+                try {
+                    RNShare.share({
+                        message: "https://play.google.com/store/apps/details?id=com.everace.tech.scannerapp",
+                        url: "https://play.google.com/store/apps/details?id=com.everace.tech.scannerapp"
+                    })
+                } catch (error) {
+                }
+            },
         }
     ]
 

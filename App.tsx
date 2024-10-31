@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet, Text, View } from 'react-native'
+import { Platform, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import BootSplash from "react-native-bootsplash";
 import RootStack from './src/navigation/rootStack';
@@ -7,6 +7,8 @@ import { getItem, setItem } from './src/services/asyncStorage';
 import { ASYNC_KEYS } from './src/assets/constants';
 import { appConfigtStateSelectors, useAppConfigState } from './src/states/appConfig';
 import { English } from './src/assets/languages';
+import mobileAds from 'react-native-google-mobile-ads';
+
 
 const App = () => {
   const setVibrateEnabled = useAppConfigState(appConfigtStateSelectors.setVibrateEnabled)
@@ -15,6 +17,12 @@ const App = () => {
 
   useEffect(() => {
     const init = async () => {
+      if (Platform.OS != 'ios') {
+        mobileAds()
+          .initialize()
+          .then(adapterStatuses => { })
+          .catch(() => { })
+      }
       const vibrateData = await getItem(ASYNC_KEYS.VIBRATE, null)
       if (vibrateData == null || vibrateData == 'true') {
         setVibrateEnabled(true)

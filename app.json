@@ -1,4 +1,8 @@
 {
   "name": "EverScanner",
-  "displayName": "EverScanner"
+  "displayName": "EverScanner",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-6260837983992719~3389267081",
+    "ios_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx"
+  }
 }

@@ -1,18 +1,26 @@
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Toast from 'react-native-toast-message'
-import { ALERT_HEADER, ALERT_TYPES, QR_TYPE, SCREENS } from '../../assets/constants'
+import { ALERT_HEADER, ALERT_TYPES, ANDROID_AD_IDS, QR_TYPE, SCREENS } from '../../assets/constants'
 import { hp } from '../../assets/stylesGuide'
 import { Business, Contact, Email, Event, Instagram, Location, Telephone, Text, Twitter, Website, WhatsApp, Wifi } from '../../assets/svg'
 import { GenerateHeader, Layout, TypeItem } from '../../components'
 import { InitialNavigationStackParamList } from '../../navigation/rootStack'
 import { appConfigtStateSelectors, useAppConfigState } from '../../states/appConfig'
 import styles from './styles.generate'
+import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
+
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : ANDROID_AD_IDS.INTERSTITIAL;
+
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  requestNonPersonalizedAdsOnly: true
+});
 
 const GenerateScreen = () => {
   const lang = useAppConfigState(appConfigtStateSelectors.language)
   const navigation = useNavigation<NativeStackNavigationProp<InitialNavigationStackParamList>>();
+  const [loaded, setLoaded] = useState(false);
 
   const TYPES: any = [
     {
@@ -89,6 +97,27 @@ const GenerateScreen = () => {
       icon: <Telephone width={hp(6)} height={hp(6)} />
     },
   ]
+
+
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      setLoaded(true);
+    });
+
+    // Start loading the interstitial straight away
+    interstitial.load();
+
+    // Unsubscribe from events on unmount
+    return unsubscribe;
+  }, []);
+
+
+  useEffect(() => {
+    if (loaded == true) {
+       interstitial?.show();
+    }
+  }, [loaded])
+
 
 
   const handleComingSoon = () => {
